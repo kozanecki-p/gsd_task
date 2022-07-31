@@ -8,7 +8,7 @@ let _getAerisForecast;
 describe("GetAerisForecast service", () => {
     beforeAll(() => {
         aerisApiMock = {
-            getWeatherForLocation: jest.fn().mockResolvedValue([
+            getWeatherForLocation: jest.fn().mockResolvedValue({response: [
                 {
                     periods: [
                         {
@@ -33,7 +33,7 @@ describe("GetAerisForecast service", () => {
                         },
                     ]
                 }
-            ])
+            ]})
         };
         _getAerisForecast = new GetAerisForecast(aerisApiMock);
     });

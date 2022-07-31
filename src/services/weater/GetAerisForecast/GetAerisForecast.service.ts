@@ -15,8 +15,8 @@ export class GetAerisForecast {
         return this._mapForecast(apiData);
     }
 
-    private _mapForecast (apiData: AerisForecast[]): Forecast {
-        const weatherInAnHour = apiData[0].periods.find(period => {
+    private _mapForecast (apiData: AerisForecast): Forecast {
+        const weatherInAnHour = apiData.response[0].periods.find(period => {
             return period.timestamp > moment().add(1, "hour").unix();
         })
         return {

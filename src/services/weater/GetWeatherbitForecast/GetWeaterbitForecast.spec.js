@@ -7,13 +7,13 @@ let _getWeatgerbitForecast;
 describe("GetAerisForecast service", () => {
     beforeAll(() => {
         weatherbitApiMock = {
-            getWeatherForLocation: jest.fn().mockResolvedValue([
+            getWeatherForLocation: jest.fn().mockResolvedValue({data: [
                 { temp: 12 },
                 { temp: 13 },
                 { temp: 14 },
                 { temp: 15 },
                 { temp: 16 },
-            ])
+            ]})
         };
         _getWeatgerbitForecast = new GetWeaterbitForecast(weatherbitApiMock);
     });

@@ -14,8 +14,8 @@ export class GetWeaterbitForecast {
         return this._mapForecast(apiData);
     }
 
-    private _mapForecast (apiData: WeatherbitForecast[]): Forecast {
-        const weatherInAnHour = apiData[apiData.length - 1];
+    private _mapForecast (apiData: WeatherbitForecast): Forecast {
+        const weatherInAnHour = apiData.data[apiData.data.length - 1];
         return {
             temperature: weatherInAnHour.temp
         };

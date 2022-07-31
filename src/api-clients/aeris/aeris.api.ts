@@ -4,7 +4,7 @@ import { AerisForecast } from "./contracts/output/GetWeatherForLocation";
 
 @injectable()
 export class ArerisApi {
-    public async getWeatherForLocation (latitude: number, longitude: number) : Promise<AerisForecast[]> {
+    public async getWeatherForLocation (latitude: number, longitude: number) : Promise<AerisForecast> {
 
         const options = {
             method: 'GET',
@@ -17,6 +17,6 @@ export class ArerisApi {
           };
           
         const response = await axios.request(options);
-        return response.data.response;
+        return response.data;
     }
 }

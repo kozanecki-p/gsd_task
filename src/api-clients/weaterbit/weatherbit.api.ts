@@ -4,7 +4,7 @@ import { WeatherbitForecast } from "./contracts/output/GetWeatherForLocation";
 
 @injectable()
 export class WeatherbitApi {
-    public async getWeatherForLocation (latitude: number, longitude: number): Promise<WeatherbitForecast[]> {
+    public async getWeatherForLocation (latitude: number, longitude: number): Promise<WeatherbitForecast> {
         const options = {
             method: 'GET',
             url: `${process.env["WEATHERBIT_URL"]}/forecast/minutely`,
@@ -16,7 +16,7 @@ export class WeatherbitApi {
           };
           
         const response = await axios.request(options);
-        return response.data.data;
+        return response.data;
     }
 }
 

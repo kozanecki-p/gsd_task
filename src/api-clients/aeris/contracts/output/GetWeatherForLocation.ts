@@ -1,4 +1,8 @@
 export interface AerisForecast {
+    response: AerisForecastResponse[]
+}
+
+export interface AerisForecastResponse {
     periods: Period[]
 }
 
