@@ -1,5 +1,6 @@
 import { config as dotenvConfig } from "dotenv";
 import { createApp } from "./app";
+import "reflect-metadata";
 
 dotenvConfig();
 

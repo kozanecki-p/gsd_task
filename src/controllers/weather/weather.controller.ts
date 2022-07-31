@@ -1,20 +1,22 @@
-import { Request, Response, Router } from "express";
+import "reflect-metadata";
 
-export class WeatherController {
+import { WeatherbitApi } from "../../api-clients/weatherbit.api";
+import { controller, httpGet } from "inversify-express-utils";
+import { inject } from "inversify";
+import { ArerisApi } from "../../api-clients/aeris.api";
+import { VisualCrossingApi } from "../../api-clients/visual-crossing.api";
 
-  constructor () {
-  }
+@controller("/weather")
+export class WeatherController{
 
-  getRouter = (): Router => {
-    const router = Router();
-    router.get("/", this.getWeather);
-    return router;
-  }
+    constructor (
+        @inject(VisualCrossingApi) private readonly _weatherbitApi: VisualCrossingApi
+    ) {}
 
-  getWeather = async (request: Request, response: Response<{}>) => {
+    @httpGet("/")
+    async getWeather () {
+        const weather = await this._weatherbitApi.getWeatherForLocation(35, -78);
 
-    response
-        .status(200)
-        .json({})
-  }
+        return weather.data;
+    }
 }
