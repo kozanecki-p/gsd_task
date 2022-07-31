@@ -18,7 +18,7 @@ export class GetVisualCrossingForecast {
     private _mapForecast (apiData: VisualCrossingForecast): Forecast {
         const locationData = Object.values(apiData.locations)[0];
         const weatherInAnHour = locationData.values.find(location => {
-            return location.datetime > moment().unix();
+            return location.datetime > moment().add(1, "hour").unix();
         })
         return {
             temperature: weatherInAnHour?.temp

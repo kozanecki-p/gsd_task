@@ -17,7 +17,7 @@ export class GetAerisForecast {
 
     private _mapForecast (apiData: AerisForecast[]): Forecast {
         const weatherInAnHour = apiData[0].periods.find(period => {
-            return period.timestamp > moment().unix();
+            return period.timestamp > moment().add(1, "hour").unix();
         })
         return {
             temperature: weatherInAnHour?.avgTempC
