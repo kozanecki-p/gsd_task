@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import axios from "axios";
-import { VisualCrossingForecast } from "./contracts/output/get-weather-for-location";
+import { VisualCrossingForecast } from "./contracts/output/GetWeatherForLocation";
 
 @injectable()
 export class VisualCrossingApi {

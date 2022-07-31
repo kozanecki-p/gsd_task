@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import moment from "moment";
-import { VisualCrossingForecast } from "../../../api-clients/visual-crossing/contracts/output/get-weather-for-location";
-import { VisualCrossingApi } from "../../../api-clients/visual-crossing/visual-crossing.api";
+import { VisualCrossingForecast } from "../../../api-clients/visualCrossing/contracts/output/GetWeatherForLocation";
+import { VisualCrossingApi } from "../../../api-clients/visualCrossing/visualCrossing.api";
 import { Forecast } from "../contracts/output/forecast";
 
 @injectable()

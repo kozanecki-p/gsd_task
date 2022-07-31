@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { WeatherbitForecast } from "../../../api-clients/weaterbit/contracts/output/get-weather-for-location";
+import { WeatherbitForecast } from "../../../api-clients/weaterbit/contracts/output/GetWeatherForLocation";
 import { WeatherbitApi } from "../../../api-clients/weaterbit/weatherbit.api";
 import { Forecast } from "../contracts/output/forecast";
 

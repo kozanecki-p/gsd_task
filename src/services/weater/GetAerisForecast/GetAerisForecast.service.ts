@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import moment from "moment";
 import { ArerisApi } from "../../../api-clients/aeris/aeris.api";
-import { AerisForecast } from "../../../api-clients/aeris/contracts/output/get-weather-for-location";
+import { AerisForecast } from "../../../api-clients/aeris/contracts/output/GetWeatherForLocation";
 import { Forecast } from "../contracts/output/forecast";
 
 @injectable()

@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import axios from "axios";
-import { WeatherbitForecast } from "./contracts/output/get-weather-for-location";
+import { WeatherbitForecast } from "./contracts/output/GetWeatherForLocation";
 
 @injectable()
 export class WeatherbitApi {

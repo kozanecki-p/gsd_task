@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import axios from "axios";
-import { AerisForecast } from "../aeris/contracts/output/get-weather-for-location";
+import { AerisForecast } from "./contracts/output/GetWeatherForLocation";
 
 @injectable()
 export class ArerisApi {
