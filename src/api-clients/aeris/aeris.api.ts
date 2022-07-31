@@ -1,9 +1,10 @@
 import { injectable } from "inversify";
 import axios from "axios";
+import { AerisForecast } from "../aeris/contracts/output/get-weather-for-location";
 
 @injectable()
 export class ArerisApi {
-    public async getWeatherForLocation (latitude: number, longitude: number) {
+    public async getWeatherForLocation (latitude: number, longitude: number) : Promise<AerisForecast[]> {
 
         const options = {
             method: 'GET',
@@ -16,6 +17,6 @@ export class ArerisApi {
           };
           
         const response = await axios.request(options);
-        return response;
+        return response.data.response;
     }
 }

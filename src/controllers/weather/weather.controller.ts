@@ -1,22 +1,29 @@
 import "reflect-metadata";
 
-import { WeatherbitApi } from "../../api-clients/weatherbit.api";
-import { controller, httpGet } from "inversify-express-utils";
+import { controller, httpGet, queryParam } from "inversify-express-utils";
 import { inject } from "inversify";
-import { ArerisApi } from "../../api-clients/aeris.api";
-import { VisualCrossingApi } from "../../api-clients/visual-crossing.api";
+import { GetWeaterbitForecast } from "../../services/weater/GetWeatherbitForecast/GetWeaterbitForecast.service";
+import { GetAerisForecast } from "../../services/weater/GetAerisForecast/GetAerisForecast.service";
+import { GetVisualCrossingForecast } from "../../services/weater/GetVisualCrossingForecast/GetVisualCrossingForecast.service";
 
 @controller("/weather")
 export class WeatherController{
 
     constructor (
-        @inject(VisualCrossingApi) private readonly _weatherbitApi: VisualCrossingApi
+        @inject(GetWeaterbitForecast) private readonly _getWeatherbitForecast: GetWeaterbitForecast,
+        @inject(GetAerisForecast) private readonly _getAerisForecast: GetAerisForecast,
+        @inject(GetVisualCrossingForecast) private readonly _getVisualCrossingForecast: GetVisualCrossingForecast,
     ) {}
 
     @httpGet("/")
-    async getWeather () {
-        const weather = await this._weatherbitApi.getWeatherForLocation(35, -78);
+    async getWeather (@queryParam("lat") latitude: number, @queryParam("lon") longitude: number) {
 
-        return weather.data;
+        const weather = await Promise.all([
+            this._getWeatherbitForecast.getForecast(latitude, longitude),
+            this._getAerisForecast.getForecast(latitude, longitude),
+            this._getVisualCrossingForecast.getForecast(latitude, longitude),
+        ]);
+
+        return weather;
     }
 }

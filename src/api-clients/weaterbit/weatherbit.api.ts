@@ -1,9 +1,10 @@
 import { injectable } from "inversify";
 import axios from "axios";
+import { WeatherbitForecast } from "./contracts/output/get-weather-for-location";
 
 @injectable()
 export class WeatherbitApi {
-    public async getWeatherForLocation (latitude: number, longitude: number) {
+    public async getWeatherForLocation (latitude: number, longitude: number): Promise<WeatherbitForecast[]> {
         const options = {
             method: 'GET',
             url: `${process.env["WEATHERBIT_URL"]}/forecast/minutely`,
@@ -15,7 +16,7 @@ export class WeatherbitApi {
           };
           
         const response = await axios.request(options);
-        return response;
+        return response.data.data;
     }
 }
 

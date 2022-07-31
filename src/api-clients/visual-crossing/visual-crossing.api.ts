@@ -1,9 +1,10 @@
 import { injectable } from "inversify";
 import axios from "axios";
+import { VisualCrossingForecast } from "./contracts/output/get-weather-for-location";
 
 @injectable()
 export class VisualCrossingApi {
-    public async getWeatherForLocation (latitude: number, longitude: number) {
+    public async getWeatherForLocation (latitude: number, longitude: number) : Promise<VisualCrossingForecast> {
 
         const options = {
             method: 'GET',
@@ -22,6 +23,6 @@ export class VisualCrossingApi {
         };
           
         const response = await axios.request(options);
-        return response;
+        return response.data;
     }
 }
